@@ -12,6 +12,15 @@ export const GlobalTheme = createGlobalStyle`
     --color-background-secondary: #e5e5e5;
 
     --color-border-primary: #646466;
+
+    --color-button-text-primary: #fff;
+    --color-button-text-secondary: #004bff;
+
+    --color-button-background-primary: #004bff;
+    --color-button-background-secondary: #fff;
+
+    --color-button-background-hover: #00fac8;
+    --color-button-text-hover: #0f141e;
   }
 
   * {

@@ -1,4 +1,5 @@
 import '../App.css'
+import { Button } from '../components/button/button'
 import { GlobalTheme } from '../theme/global_theme'
 
 function App () {
@@ -17,6 +18,8 @@ function App () {
           Learn React
         </a>
       </header>
+      <Button variant="primary">Click</Button>
+      <Button variant="secondary">Click 2</Button>
       <GlobalTheme />
     </div>
   )
