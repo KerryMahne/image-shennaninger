@@ -1,3 +1,5 @@
+import { MainLayout } from '../layouts/main_layout'
+
 export function ImageEdit () {
-  return <div>Welcome to image edit!</div>
+  return <MainLayout>Welcome to image edit!</MainLayout>
 }

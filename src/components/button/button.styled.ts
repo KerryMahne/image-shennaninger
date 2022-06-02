@@ -13,14 +13,14 @@ const BUTTON_TEXT = {
 }
 
 export const Button = styled.button<{ variant: ButtonVariant }>`
-  min-height: 3rem;
-  min-width: 15rem;
+  min-height: 2.5rem;
+  min-width: 12rem;
 
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
 
   font-family: Archia, sans-serif;
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: 0.875rem;
+  font-weight: 700;
   line-height: 1;
 
   text-align: center;

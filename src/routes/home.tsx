@@ -1,3 +1,5 @@
+import { MainLayout } from '../layouts/main_layout'
+
 export function Home () {
-  return <div>Welcome home!</div>
+  return <MainLayout>Welcome home!</MainLayout>
 }

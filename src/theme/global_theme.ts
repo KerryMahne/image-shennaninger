@@ -11,7 +11,7 @@ export const GlobalTheme = createGlobalStyle`
     --color-background-primary: #fff;
     --color-background-secondary: #e5e5e5;
 
-    --color-border-primary: #646466;
+    --color-border-primary: #afb0b2;
 
     --color-button-text-primary: #fff;
     --color-button-text-secondary: #004bff;
@@ -33,13 +33,9 @@ export const GlobalTheme = createGlobalStyle`
     height: 100%;
   }
 
-  html {
-    font-size: 62.5%; /* 10px === 1rem */
-  }
-
   body {
     font-family: Archia, sans-serif;
-    font-size: 1.6rem;
+    font-size: 1rem;
     line-height: 1.6;
     color: var(--color-text-primary);
     background-color: var(--color-background-primary);
@@ -48,24 +44,23 @@ export const GlobalTheme = createGlobalStyle`
   h1, h2, h3 {
     font-family: Archia, sans-serif;
     font-weight: 800;
-    margin: 3rem 0;
+    margin: 2rem 0;
   }
 
   h1 {
-    font-size: 3.6rem;
+    font-size: 3rem;
   }
 
   h2 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
 
   h3 {
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
   p {
-    font-size: 1.6rem;
-    margin: 3rem 0;
+    font-size: 1.5rem;
   }
 
   a {
