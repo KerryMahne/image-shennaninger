@@ -1,7 +1,7 @@
-import '../App.css';
-import { GlobalTheme } from '../theme/global_theme';
+import '../App.css'
+import { GlobalTheme } from '../theme/global_theme'
 
-function App() {
+function App () {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,7 +19,7 @@ function App() {
       </header>
       <GlobalTheme />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

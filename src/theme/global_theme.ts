@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalTheme = createGlobalStyle`
   :root {
@@ -63,4 +63,4 @@ export const GlobalTheme = createGlobalStyle`
     color: var(--special-link);
     text-decoration: underline;
   }
-`;
+`
