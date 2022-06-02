@@ -1,27 +1,19 @@
 import '../App.css'
-import { Button } from '../components/button/button'
 import { GlobalTheme } from '../theme/global_theme'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ROUTES } from '../constants/routes'
+import { ImageEdit } from '../routes/image-edit'
+import { Home } from '../routes/home'
 
 function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Button variant="primary">Click</Button>
-      <Button variant="secondary">Click 2</Button>
+    <BrowserRouter>
+      <Routes>
+        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.IMAGE_EDIT} element={<ImageEdit />} />
+      </Routes>
       <GlobalTheme />
-    </div>
+    </BrowserRouter>
   )
 }
 
