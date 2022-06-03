@@ -1,4 +1,4 @@
-import { RemoteDataInfinite } from '../interfaces';
+import { RemoteDataInfinite } from '../interfaces'
 
 export interface ImagesQueryResult {
   data: RemoteDataInfinite<string[]>;

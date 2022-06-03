@@ -31,7 +31,10 @@ export function useGetImages (): ImagesQueryResult {
 
       return imagesResponse.map((image) => {
         const normalizedImage = transformImage(image)
-        queryClient.setQueryData(normalizedImage.id, normalizedImage)
+        queryClient.setQueryData(
+          QUERY_KEYS.SINGLE_IMAGE(normalizedImage.id),
+          normalizedImage
+        )
 
         return normalizedImage.id
       })

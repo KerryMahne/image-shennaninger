@@ -9,7 +9,7 @@ export const GlobalTheme = createGlobalStyle`
     --color-text-secondary: #474c56;
 
     --color-background-primary: #fff;
-    --color-background-secondary: #e5e5e5;
+    --color-background-secondary: #efefef;
 
     --color-border-primary: #afb0b2;
 
@@ -44,7 +44,7 @@ export const GlobalTheme = createGlobalStyle`
   h1, h2, h3 {
     font-family: Archia, sans-serif;
     font-weight: 800;
-    margin: 2rem 0;
+    margin: 0;
   }
 
   h1 {
