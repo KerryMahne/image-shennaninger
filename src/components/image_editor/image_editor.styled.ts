@@ -14,4 +14,5 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
   object-fit: cover;
+  max-width: 100%;
 `

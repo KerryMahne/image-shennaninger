@@ -28,9 +28,12 @@ export function useGetImage (imageId: string): ImageQueryResult {
       return normalizedImage
     },
     {
+      staleTime: 5 * 60 * 1000,
       initialData: () => {
         // try to prefetch so we save some API calls :)
-        return queryClient.getQueryData(queryKey)
+        const existingData = queryClient.getQueryData<Image>(queryKey)
+
+        return existingData
       }
     }
   )

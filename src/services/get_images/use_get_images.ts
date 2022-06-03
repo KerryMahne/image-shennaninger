@@ -31,6 +31,13 @@ export function useGetImages (): ImagesQueryResult {
 
       return imagesResponse.map((image) => {
         const normalizedImage = transformImage(image)
+        queryClient.setQueryDefaults(
+          QUERY_KEYS.SINGLE_IMAGE(normalizedImage.id),
+          {
+            staleTime: 5 * 60 * 1000
+          }
+        )
+
         queryClient.setQueryData(
           QUERY_KEYS.SINGLE_IMAGE(normalizedImage.id),
           normalizedImage
@@ -41,7 +48,8 @@ export function useGetImages (): ImagesQueryResult {
     },
     {
       getNextPageParam: getNextPageNumber,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
+      staleTime: 5 * 60 * 1000
     }
   )
 
