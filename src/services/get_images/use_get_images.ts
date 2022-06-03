@@ -4,12 +4,13 @@ import { transformImage } from '../image.transformer'
 import { RemoteDataType } from '../interfaces'
 import { QUERY_KEYS } from '../query_keys'
 import { getImages } from './get_images.api'
+import { ImagesQueryResult } from './get_images.interfaces'
 
 function getNextPageNumber (_lastPage: string[], allPages: string[][]) {
   return allPages.length + 1
 }
 
-export function useGetImages () {
+export function useGetImages (): ImagesQueryResult {
   // react query doesnt handle this
   const [isFetchingNextPageError, setIsFetchingNextPageError] = useState(false)
 
@@ -27,7 +28,6 @@ export function useGetImages () {
     QUERY_KEYS.ALL_IMAGES,
     async ({ pageParam = 1 }) => {
       const imagesResponse = await getImages(pageParam)
-      console.log('ma kaj', imagesResponse)
 
       return imagesResponse.map((image) => {
         const normalizedImage = transformImage(image)

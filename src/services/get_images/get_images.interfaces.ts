@@ -1,7 +1,7 @@
-import { RemoteData } from '../interfaces';
+import { RemoteDataInfinite } from '../interfaces';
 
 export interface ImagesQueryResult {
-  data: RemoteData<string[]>;
+  data: RemoteDataInfinite<string[]>;
   fetchNextPage: () => Promise<void>;
   refetch: () => Promise<void>;
   hasNextPage: boolean;
