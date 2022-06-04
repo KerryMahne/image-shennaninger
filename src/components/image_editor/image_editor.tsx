@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useEffect, useMemo, useReducer } from 'react'
 import { Image } from '../../services/interfaces'
 import { Button } from '../button/button.styled'
 import {
@@ -6,6 +6,7 @@ import {
   controlsReducer,
   getInitialState
 } from './controls.reducer'
+import { saveEditorData } from './image_editor.helpers'
 import * as Styled from './image_editor.styled'
 import { useDownloadImage } from './use_download_image'
 
@@ -38,14 +39,26 @@ interface ImageEditorProps {
 // TODO persist image state in local storage
 // TODO image download stops UI
 export function ImageEditor ({ image }: ImageEditorProps) {
-  const [state, dispatch] = useReducer(
-    controlsReducer,
-    getInitialState({
-      width: image.width,
-      height: image.height,
-      imageId: image.id
-    })
+  const initialState = useMemo(
+    () =>
+      getInitialState({
+        width: image.width,
+        height: image.height,
+        imageId: image.id
+      }),
+    [image.width, image.height, image.id]
   )
+  const [state, dispatch] = useReducer(controlsReducer, initialState)
+
+  useEffect(() => {
+    saveEditorData(image.id, {
+      width: state.width,
+      height: state.height,
+      blur: state.blur,
+      grayscale: state.grayscale
+    })
+  }, [state])
+
   const { downloadImage } = useDownloadImage()
   const isEditingDisabled = state.imageUpdating
 

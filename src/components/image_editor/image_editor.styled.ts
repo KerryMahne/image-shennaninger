@@ -10,6 +10,9 @@ export const ImageContainer = styled.div`
   width: 80vw;
   max-height: 70vh;
   overflow: auto;
+
+  display: flex;
+  justify-content: center;
 `
 
 export const Image = styled.img`

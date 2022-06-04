@@ -1,4 +1,6 @@
 import { getImageWithFilters, getImageWithSize } from '../../helpers/image'
+import { loadEditorData } from './image_editor.helpers'
+import { ImageControls } from './image_editor.interfaces'
 
 export enum ControlActionType {
   BLUR = 'BLUR',
@@ -29,12 +31,8 @@ export type ControlAction =
     type: ControlActionType.IMAGE_UPDATED;
   };
 
-interface ControlState {
+export interface ControlState extends ImageControls {
   imageId: string;
-  blur: number;
-  grayscale: boolean;
-  width: number;
-  height: number;
   imageUpdating: boolean;
   previewUrl: string;
 }
@@ -49,6 +47,24 @@ export function getInitialState ({
   height,
   imageId
 }: GetInitialStateParams): ControlState {
+  const initialControls = loadEditorData(imageId)
+  console.log('inicijalke', initialControls)
+
+  if (initialControls !== null) {
+    return {
+      imageId,
+      imageUpdating: false,
+      ...initialControls,
+      previewUrl: getImageWithFilters({
+        imageId,
+        width: initialControls.width,
+        grayscale: initialControls.grayscale,
+        blur: initialControls.blur,
+        height: initialControls.height
+      })
+    }
+  }
+
   return {
     imageId,
     blur: 0,
