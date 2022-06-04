@@ -1,7 +1,7 @@
 import { useQueryClient } from 'react-query'
 import { Link } from 'react-router-dom'
-import { BASE_IMAGE_URL } from '../../../../constants/images'
 import { ROUTES } from '../../../../constants/routes'
+import { getImageWithSize } from '../../../../helpers/image'
 import { Image } from '../../../../services/interfaces'
 import { QUERY_KEYS } from '../../../../services/query_keys'
 import { IMAGE_HEIGHT, IMAGE_WIDTH } from './image_card.constants'
@@ -28,7 +28,11 @@ export function ImageCard ({ imageId }: ImageCardProps) {
       <Styled.ImageContainer>
         {/* We don't really want to load 30 4k images if we display them 250 by 250 :) */}
         <Styled.Image
-          src={`${BASE_IMAGE_URL}/${image.id}/${IMAGE_WIDTH}/${IMAGE_HEIGHT}`}
+          src={getImageWithSize({
+            imageId,
+            height: IMAGE_HEIGHT,
+            width: IMAGE_WIDTH
+          })}
         />
         <Styled.Author>By {image.author}</Styled.Author>
       </Styled.ImageContainer>
