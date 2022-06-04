@@ -5,6 +5,7 @@ export enum ControlActionType {
   GRAYSCALE = 'GRAYSCALE',
   WIDTH = 'WIDTH',
   HEIGHT = 'HEIGHT',
+  IMAGE_UPDATED = 'IMAGE_UPDATED',
 }
 
 export type ControlAction =
@@ -23,6 +24,9 @@ export type ControlAction =
   | {
     type: ControlActionType.HEIGHT;
     payload: number;
+  }
+  | {
+    type: ControlActionType.IMAGE_UPDATED;
   };
 
 interface ControlState {
@@ -31,6 +35,7 @@ interface ControlState {
   grayscale: boolean;
   width: number;
   height: number;
+  imageUpdating: boolean;
   previewUrl: string;
 }
 
@@ -50,6 +55,7 @@ export function getInitialState ({
     grayscale: false,
     width,
     height,
+    imageUpdating: false,
     previewUrl: getImageWithSize({ width, height, imageId })
   }
 }
@@ -62,6 +68,7 @@ export const controlsReducer = (
     case ControlActionType.BLUR:
       return {
         ...state,
+        imageUpdating: true,
         blur: action.payload,
         previewUrl: getImageWithFilters({
           width: state.width,
@@ -74,6 +81,7 @@ export const controlsReducer = (
     case ControlActionType.WIDTH:
       return {
         ...state,
+        imageUpdating: true,
         width: action.payload,
         previewUrl: getImageWithFilters({
           height: state.height,
@@ -86,6 +94,7 @@ export const controlsReducer = (
     case ControlActionType.HEIGHT:
       return {
         ...state,
+        imageUpdating: true,
         height: action.payload,
         previewUrl: getImageWithFilters({
           width: state.width,
@@ -98,6 +107,7 @@ export const controlsReducer = (
     case ControlActionType.GRAYSCALE:
       return {
         ...state,
+        imageUpdating: true,
         grayscale: action.payload,
         previewUrl: getImageWithFilters({
           width: state.width,
@@ -106,6 +116,11 @@ export const controlsReducer = (
           blur: state.blur,
           grayscale: action.payload
         })
+      }
+    case ControlActionType.IMAGE_UPDATED:
+      return {
+        ...state,
+        imageUpdating: false
       }
     default:
       throw new Error('Unsupported action')
