@@ -4,6 +4,7 @@ import { RemoteDataType } from '../../services/interfaces'
 import { ImageCard } from './fragments/image_card/image_card'
 import * as Styled from './image_list.styled'
 
+// TODO - add pagination
 export function ImageList () {
   const { data, refetch, fetchNextPage, hasNextPage } = useGetImages()
 

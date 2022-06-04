@@ -1,11 +1,13 @@
 import { useReducer } from 'react'
 import { Image } from '../../services/interfaces'
+import { Button } from '../button/button.styled'
 import {
   ControlActionType,
   controlsReducer,
   getInitialState
 } from './controls.reducer'
 import * as Styled from './image_editor.styled'
+import { useDownloadImage } from './use_download_image'
 
 // could be moved to global helpers, but until it's used in more places it's fine here
 function clampValue ({
@@ -20,6 +22,10 @@ function clampValue ({
   return Math.min(Math.max(value, min), max)
 }
 
+export function getImageName (imageId: string) {
+  return `picsum-${imageId}`
+}
+
 const MIN_IMAGE_WIDTH = 1
 const MIN_IMAGE_HEIGHT = 1
 const MIN_IMAGE_BLUR = 0
@@ -30,6 +36,8 @@ interface ImageEditorProps {
 }
 
 // TODO disable controls when image is loading
+// TODO persist image state in local storage
+// TODO image download stops UI
 export function ImageEditor ({ image }: ImageEditorProps) {
   const [state, dispatch] = useReducer(
     controlsReducer,
@@ -39,6 +47,7 @@ export function ImageEditor ({ image }: ImageEditorProps) {
       imageId: image.id
     })
   )
+  const { downloadImage } = useDownloadImage()
 
   return (
     <Styled.ImageEditorContainer>
@@ -128,6 +137,14 @@ export function ImageEditor ({ image }: ImageEditorProps) {
           />
         </Styled.ControlsRow>
       </Styled.ControlsContainer>
+      <Button
+        variant="primary"
+        onClick={async () => {
+          await downloadImage(state.previewUrl, getImageName(image.id))
+        }}
+      >
+        Download
+      </Button>
     </Styled.ImageEditorContainer>
   )
 }
