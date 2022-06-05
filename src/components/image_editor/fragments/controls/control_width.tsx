@@ -1,16 +1,15 @@
-import { ControlActionType } from '../../controls.reducer'
 import { clampValue } from '../../image_editor.helpers'
-import { ControlsDispatch } from '../../image_editor.interfaces'
+import { useControlStore } from '../../image_editor.store'
 import * as Styled from './controls.styled'
 
 const MIN_IMAGE_WIDTH = 1
 
-interface ControlWidthProps {
-  maxWidth: number;
-  width: number;
-  dispatch: ControlsDispatch;
-}
-export function ControlWidth ({ maxWidth, width, dispatch }: ControlWidthProps) {
+export function ControlWidth () {
+  const {
+    image: { width: nativeWidth },
+    width,
+    changeWidth
+  } = useControlStore()
   return (
     <>
       <Styled.ControlLabel htmlFor="width">Width</Styled.ControlLabel>
@@ -19,18 +18,16 @@ export function ControlWidth ({ maxWidth, width, dispatch }: ControlWidthProps) 
           type="number"
           id="width"
           value={width}
-          max={maxWidth}
+          max={nativeWidth}
           min={MIN_IMAGE_WIDTH}
           onChange={(e) => {
-            // the clamping is done here, so the reducer is "pure" and dumb
-            dispatch({
-              type: ControlActionType.WIDTH,
-              payload: clampValue({
+            changeWidth(
+              clampValue({
                 value: Number(e.target.value),
                 min: MIN_IMAGE_WIDTH,
-                max: maxWidth
+                max: nativeWidth
               })
-            })
+            )
           }}
         />
       </Styled.ControlsRow>

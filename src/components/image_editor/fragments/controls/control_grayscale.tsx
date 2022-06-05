@@ -1,15 +1,9 @@
-import { ControlActionType } from '../../controls.reducer'
-import { ControlsDispatch } from '../../image_editor.interfaces'
+import { useControlStore } from '../../image_editor.store'
 import * as Styled from './controls.styled'
 
-interface ControlGrayscaleProps {
-  grayscale: boolean;
-  dispatch: ControlsDispatch;
-}
-export function ControlGrayscale ({
-  grayscale,
-  dispatch
-}: ControlGrayscaleProps) {
+export function ControlGrayscale () {
+  const { grayscale, changeGrayscale } = useControlStore()
+
   return (
     <>
       <Styled.ControlLabel htmlFor="grayscale">Grayscale?</Styled.ControlLabel>
@@ -19,10 +13,7 @@ export function ControlGrayscale ({
           id="grayscale"
           checked={grayscale}
           onChange={(e) => {
-            dispatch({
-              type: ControlActionType.GRAYSCALE,
-              payload: e.target.checked
-            })
+            changeGrayscale(e.target.checked)
           }}
         />
       </Styled.ControlsRow>
