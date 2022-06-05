@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useReducer } from 'react'
 import { Image } from '../../services/interfaces'
 import { Button } from '../button/button.styled'
+import { Loader } from '../loader/loader'
 import {
   ControlActionType,
   controlsReducer,
@@ -64,6 +65,11 @@ export function ImageEditor ({ image }: ImageEditorProps) {
 
   return (
     <Styled.ImageEditorContainer>
+      {isEditingDisabled && (
+        <Styled.LoadingOverlay>
+          <Loader size={64} color="var(--color-primary)" />
+        </Styled.LoadingOverlay>
+      )}
       <Styled.ImageContainer>
         <Styled.Image
           src={state.previewUrl}
@@ -74,7 +80,6 @@ export function ImageEditor ({ image }: ImageEditorProps) {
           }}
         />
       </Styled.ImageContainer>
-      {isEditingDisabled && <div>Loading...</div>}
       <Styled.ControlsContainer>
         <Styled.ControlLabel htmlFor="width">Width</Styled.ControlLabel>
         <Styled.ControlsRow>
@@ -84,7 +89,6 @@ export function ImageEditor ({ image }: ImageEditorProps) {
             value={state.width}
             max={image.width}
             min={MIN_IMAGE_WIDTH}
-            disabled={isEditingDisabled}
             onChange={(e) => {
               dispatch({
                 type: ControlActionType.WIDTH,
@@ -105,7 +109,6 @@ export function ImageEditor ({ image }: ImageEditorProps) {
             value={state.height}
             max={image.height}
             min={MIN_IMAGE_HEIGHT}
-            disabled={isEditingDisabled}
             onChange={(e) => {
               dispatch({
                 type: ControlActionType.HEIGHT,
@@ -126,7 +129,6 @@ export function ImageEditor ({ image }: ImageEditorProps) {
             value={state.blur}
             max={MAX_IMAGE_BLUR}
             min={MIN_IMAGE_BLUR}
-            disabled={isEditingDisabled}
             onChange={(e) => {
               dispatch({
                 type: ControlActionType.BLUR,
@@ -147,7 +149,6 @@ export function ImageEditor ({ image }: ImageEditorProps) {
             type="checkbox"
             id="grayscale"
             checked={state.grayscale}
-            disabled={isEditingDisabled}
             onChange={(e) => {
               dispatch({
                 type: ControlActionType.GRAYSCALE,

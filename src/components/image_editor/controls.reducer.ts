@@ -84,7 +84,7 @@ export const controlsReducer = (
     case ControlActionType.BLUR:
       return {
         ...state,
-        imageUpdating: true,
+        imageUpdating: action.payload !== state.blur,
         blur: action.payload,
         previewUrl: getImageWithFilters({
           width: state.width,
@@ -97,7 +97,7 @@ export const controlsReducer = (
     case ControlActionType.WIDTH:
       return {
         ...state,
-        imageUpdating: true,
+        imageUpdating: action.payload !== state.width,
         width: action.payload,
         previewUrl: getImageWithFilters({
           height: state.height,
@@ -110,7 +110,7 @@ export const controlsReducer = (
     case ControlActionType.HEIGHT:
       return {
         ...state,
-        imageUpdating: true,
+        imageUpdating: action.payload !== state.height,
         height: action.payload,
         previewUrl: getImageWithFilters({
           width: state.width,
@@ -123,7 +123,7 @@ export const controlsReducer = (
     case ControlActionType.GRAYSCALE:
       return {
         ...state,
-        imageUpdating: true,
+        imageUpdating: action.payload !== state.grayscale,
         grayscale: action.payload,
         previewUrl: getImageWithFilters({
           width: state.width,

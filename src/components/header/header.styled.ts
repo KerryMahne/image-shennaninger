@@ -16,4 +16,5 @@ export const NavItem = styled.div`
   padding: 0 1rem;
 
   border-left: 1px solid var(--color-border-primary);
+  font-weifht: 600;
 `

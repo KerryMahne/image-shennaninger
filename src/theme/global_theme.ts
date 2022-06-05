@@ -4,6 +4,7 @@ export const GlobalTheme = createGlobalStyle`
   :root {
     --color-primary: #004bff;
     --color-secondary: #00fac8;
+    --color-error: #de3618;
 
     --color-text-primary: #0f141e;
     --color-text-secondary: #474c56;
