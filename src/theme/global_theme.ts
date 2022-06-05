@@ -61,6 +61,7 @@ export const GlobalTheme = createGlobalStyle`
   }
 
   p {
+    margin: 0;
     font-size: 1.5rem;
   }
 

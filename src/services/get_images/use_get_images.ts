@@ -31,10 +31,13 @@ export function useGetImages (): ImagesQueryResult {
 
       return imagesResponse.map((image) => {
         const normalizedImage = transformImage(image)
+        // so it doesn't get cleared from cache at any time
+        // that's how we did it, perhaps there are better ways :)
         queryClient.setQueryDefaults(
           QUERY_KEYS.SINGLE_IMAGE(normalizedImage.id),
           {
-            staleTime: 5 * 60 * 1000
+            staleTime: Infinity,
+            cacheTime: Infinity
           }
         )
 
