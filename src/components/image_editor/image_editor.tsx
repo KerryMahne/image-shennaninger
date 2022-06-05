@@ -44,8 +44,8 @@ export function ImageEditor ({ image }: ImageEditorProps) {
     })
   }, [state])
 
-  const { downloadImage } = useDownloadImage()
-  const isEditingDisabled = state.imageUpdating
+  const { downloadImage, loading } = useDownloadImage()
+  const isEditingDisabled = state.imageUpdating || loading
 
   return (
     <Styled.ImageEditorContainer>
