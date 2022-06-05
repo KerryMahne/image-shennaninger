@@ -1,6 +1,7 @@
 import { useGetImage } from '../../services/get_image/use_get_image'
 import { RemoteDataType } from '../../services/interfaces'
 import { ImageEditor } from '../image_editor/image_editor'
+import { ImageEditorSkeleton } from './fragments/image_editor_skeleton/image_editor_skeleton'
 import * as Styled from './image_editor_handler.styled'
 
 interface ImageEditorHandlerProps {
@@ -13,9 +14,13 @@ export function ImageEditorHandler ({ imageId }: ImageEditorHandlerProps) {
   function getContent () {
     switch (data.type) {
       case RemoteDataType.ERROR:
-        return <div>Something went wrong :(</div>
+        return (
+          <Styled.ErrorText>
+            Something went wrong :( Try reloading the page.
+          </Styled.ErrorText>
+        )
       case RemoteDataType.LOADING:
-        return <div>Loading...</div>
+        return <ImageEditorSkeleton />
       case RemoteDataType.SUCCESS:
         return <ImageEditor image={data.data} />
       case RemoteDataType.EMPTY:
