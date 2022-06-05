@@ -1,7 +1,7 @@
 {
   "name": "image-shennaninger",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://kerrymahne.github.io/image-shennaninger/",
   "dependencies": {
     "react": "^18.1.0",

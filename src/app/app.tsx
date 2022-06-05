@@ -9,7 +9,7 @@ import { queryClient } from '../services/query_client'
 function App () {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.IMAGE_EDIT} element={<ImageEdit />} />
