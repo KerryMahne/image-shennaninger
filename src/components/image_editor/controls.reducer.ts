@@ -48,7 +48,6 @@ export function getInitialState ({
   imageId
 }: GetInitialStateParams): ControlState {
   const initialControls = loadEditorData(imageId)
-  console.log('inicijalke', initialControls)
 
   if (initialControls !== null) {
     return {
