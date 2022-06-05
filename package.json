@@ -4,6 +4,7 @@
   "private": false,
   "homepage": "https://kerrymahne.github.io/image-shennaninger/",
   "dependencies": {
+    "dom-to-image": "^2.6.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-query": "^3.39.1",
@@ -39,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "@types/dom-to-image": "^2.6.4",
     "@types/node": "^16.11.38",
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",

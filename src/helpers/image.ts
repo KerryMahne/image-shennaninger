@@ -13,26 +13,6 @@ export function getImageWithSize ({
 }: GetImageWithSizeParams) {
   return `${BASE_IMAGE_URL}/${imageId}/${width}/${height}`
 }
-
-interface GetImageWithFiltersParams extends GetImageWithSizeParams {
-  blur: number;
-  grayscale: boolean;
-}
-export function getImageWithFilters ({
-  imageId,
-  width,
-  height,
-  blur,
-  grayscale
-}: GetImageWithFiltersParams) {
-  const urlWithSize = getImageWithSize({ imageId, width, height })
-  // the url actually works if you do ?&grayscale so not covering conditional & in the url :D
-  const blurAppendix = blur > 0 ? `blur=${blur}` : ''
-  const grayscaleAppendix = grayscale ? 'grayscale' : ''
-
-  return `${urlWithSize}?${blurAppendix}&${grayscaleAppendix}`
-}
-
 export function saveLastSeenImage (imageId: string) {
   sessionStorage.setItem('lastSeenImage', imageId)
 }

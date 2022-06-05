@@ -5,6 +5,7 @@ import { ControlBlur } from './fragments/controls/control_blur'
 import { ControlGrayscale } from './fragments/controls/control_grayscale'
 import { ControlHeight } from './fragments/controls/control_height'
 import { ControlWidth } from './fragments/controls/control_width'
+import { ImagePreview } from './fragments/image_preview/image_preview'
 import {
   createControlStore,
   ControlProvider,
@@ -31,28 +32,20 @@ export function ImageEditor ({ image }: ImageEditorProps) {
 
 export function ImageEditorControls () {
   const {
-    image: { id: imageId },
-    imageUpdating,
-    previewUrl,
-    imageUpdated
+    image: { id: imageId }
   } = useControlStore()
   const { downloadImage, loading } = useDownloadImage()
-  const isEditingDisabled = imageUpdating || loading
+  const imagePreviewId = `image-preview-${imageId}`
 
   return (
     <Styled.ImageEditorContainer>
-      {isEditingDisabled && (
+      {loading && (
         <Styled.LoadingOverlay>
           <Loader size={64} color="var(--color-primary)" />
         </Styled.LoadingOverlay>
       )}
       <Styled.ImageContainer>
-        <Styled.Image
-          src={previewUrl}
-          onLoad={() => {
-            imageUpdated()
-          }}
-        />
+        <ImagePreview id={imagePreviewId}/>
       </Styled.ImageContainer>
       <Styled.ControlsContainer>
         <ControlWidth />
@@ -63,7 +56,7 @@ export function ImageEditorControls () {
       <Button
         variant="primary"
         onClick={async () => {
-          await downloadImage(previewUrl, getImageName(imageId))
+          await downloadImage(imagePreviewId, getImageName(imageId))
         }}
       >
         Download

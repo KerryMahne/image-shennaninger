@@ -14,6 +14,7 @@ export const ImageEditorContainer = styled.div`
 
 export const LoadingOverlay = styled.div`
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
@@ -25,12 +26,9 @@ export const LoadingOverlay = styled.div`
 `
 
 export const ImageContainer = styled.div`
-  width: 80vw;
+  max-width: 80vw;
   max-height: 70vh;
   overflow: auto;
-
-  display: flex;
-  justify-content: center;
 `
 
 export const Image = styled.img`

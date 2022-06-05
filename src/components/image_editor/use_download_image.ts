@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import domToImage from 'dom-to-image'
 
 interface UseDownloadImageResult {
   loading: boolean;
-  downloadImage: (imageUrl: string, fileName: string) => Promise<void>;
+  downloadImage: (imageId: string, fileName: string) => Promise<void>;
   error: boolean;
 }
 
@@ -12,15 +13,19 @@ export function useDownloadImage (): UseDownloadImageResult {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  async function downloadImage (imageUrl: string, fileName: string) {
+  async function downloadImage (imageId: string, fileName: string) {
     try {
+      const imageElement: HTMLElement | null = document.getElementById(imageId)
+      if (imageElement === null) {
+        return
+      }
+
       setLoading(true)
-      const imageBlob = await fetch(imageUrl).then((res) => res.blob())
+      const dataUrl = await domToImage.toJpeg(imageElement, { quality: 1 })
       setLoading(false)
 
-      const blobURL = URL.createObjectURL(imageBlob)
       const downloadLink = document.createElement('a')
-      downloadLink.href = blobURL
+      downloadLink.href = dataUrl
       downloadLink.setAttribute('download', `${fileName}.jpg`)
       downloadLink.setAttribute('style', 'display: none')
 
