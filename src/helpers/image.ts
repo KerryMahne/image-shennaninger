@@ -32,3 +32,17 @@ export function getImageWithFilters ({
 
   return `${urlWithSize}?${blurAppendix}&${grayscaleAppendix}`
 }
+
+export function saveLastSeenImage (imageId: string) {
+  sessionStorage.setItem('lastSeenImage', imageId)
+}
+export function getLastSeenImage () {
+  return sessionStorage.getItem('lastSeenImage')
+}
+export function clearLastSeenImage () {
+  sessionStorage.removeItem('lastSeenImage')
+}
+
+export function getImageCardId (imageId: string) {
+  return `image-card-${imageId}`
+}

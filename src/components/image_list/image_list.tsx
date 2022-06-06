@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useGetImages } from '../../services/get_images/use_get_images'
 import { RemoteDataType } from '../../services/interfaces'
 import { Loader } from '../loader/loader'
 import { ImageCard } from './fragments/image_card/image_card'
 import { LoadingCards } from './fragments/loading_cards/loading_cards'
+import { ScrollLastImage } from './fragments/scroll_last_image/scroll_last_image'
 import * as Styled from './image_list.styled'
 
 export function ImageList () {
@@ -28,16 +28,20 @@ export function ImageList () {
         )
       case RemoteDataType.SUCCESS:
         return (
-          <Styled.ImageListContainer>
-            {data.data.map((imageId) => (
-              <ImageCard key={imageId} imageId={imageId} />
-            ))}
+          <>
+            <Styled.ImageListContainer>
+              <ScrollLastImage>
+                {data.data.map((imageId) => (
+                  <ImageCard key={imageId} imageId={imageId} />
+                ))}
+              </ScrollLastImage>
+            </Styled.ImageListContainer>
             {hasNextPage && (
               <Styled.FetchButton variant="secondary" onClick={fetchNextPage}>
                 More!
               </Styled.FetchButton>
             )}
-          </Styled.ImageListContainer>
+          </>
         )
       case RemoteDataType.LOADING_NEXT_PAGE:
         return (

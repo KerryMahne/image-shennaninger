@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { saveLastSeenImage } from '../../helpers/image'
 import { useGetImage } from '../../services/get_image/use_get_image'
 import { RemoteDataType } from '../../services/interfaces'
 import { ImageEditor } from '../image_editor/image_editor'
@@ -10,6 +12,9 @@ interface ImageEditorHandlerProps {
 
 export function ImageEditorHandler ({ imageId }: ImageEditorHandlerProps) {
   const { data } = useGetImage(imageId)
+  useEffect(() => {
+    saveLastSeenImage(imageId)
+  }, [imageId])
 
   function getContent () {
     switch (data.type) {

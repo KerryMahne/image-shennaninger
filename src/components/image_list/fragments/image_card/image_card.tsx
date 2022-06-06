@@ -1,7 +1,7 @@
 import { useQueryClient } from 'react-query'
 import { Link } from 'react-router-dom'
 import { ROUTES } from '../../../../constants/routes'
-import { getImageWithSize } from '../../../../helpers/image'
+import { getImageCardId, getImageWithSize } from '../../../../helpers/image'
 import { Image } from '../../../../services/interfaces'
 import { QUERY_KEYS } from '../../../../services/query_keys'
 import { IMAGE_HEIGHT, IMAGE_WIDTH } from './image_card.constants'
@@ -25,7 +25,7 @@ export function ImageCard ({ imageId }: ImageCardProps) {
 
   return (
     <Link to={ROUTES.IMAGE_EDIT.replace(':imageId', imageId)}>
-      <Styled.ImageContainer>
+      <Styled.ImageContainer id={getImageCardId(imageId)}>
         {/* We don't really want to load 30 4k images if we display them 250 by 250 :) */}
         <Styled.Image
           src={getImageWithSize({
